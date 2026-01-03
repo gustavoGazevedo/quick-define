@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Define - Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Quick Define Settings</h1>
+      <p class="subtitle">Configure your dictionary search preferences</p>
+    </header>
+    
+    <main>
+      <section class="settings-section">
+        <h2>General Settings</h2>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="default-dictionary">Default Dictionary</label>
+            <p class="setting-description">Used for quick searches from the popup</p>
+          </div>
+          <select id="default-dictionary"></select>
+        </div>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="fallback-dictionary">Fallback Dictionary</label>
+            <p class="setting-description">Used when primary dictionary fails</p>
+          </div>
+          <select id="fallback-dictionary">
+            <option value="">None</option>
+          </select>
+        </div>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="tab-behavior">Tab Behavior</label>
+            <p class="setting-description">How to open dictionary results</p>
+          </div>
+          <select id="tab-behavior">
+            <option value="new">Always open new tab</option>
+            <option value="reuse">Reuse existing dictionary tab</option>
+          </select>
+        </div>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <label for="history-enabled">Search History</label>
+            <p class="setting-description">Keep track of recent searches</p>
+          </div>
+          <div class="toggle-group">
+            <label class="toggle">
+              <input type="checkbox" id="history-enabled">
+              <span class="slider"></span>
+            </label>
+            <button id="clear-history" class="btn-secondary">Clear History</button>
+          </div>
+        </div>
+      </section>
+      
+      <section class="settings-section">
+        <h2>Dictionary Management</h2>
+        <p class="section-description">Drag to reorder. Toggle to enable/disable.</p>
+        
+        <div id="dictionaries-list" class="dictionaries-list"></div>
+        
+        <button id="add-dictionary" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14"></path>
+          </svg>
+          Add Custom Dictionary
+        </button>
+      </section>
+      
+      <section class="settings-section">
+        <h2>Import / Export</h2>
+        <div class="button-group">
+          <button id="export-settings" class="btn-secondary">Export Settings</button>
+          <button id="import-settings" class="btn-secondary">Import Settings</button>
+          <input type="file" id="import-file" accept=".json" hidden>
+        </div>
+      </section>
+    </main>
+    
+    <div id="toast" class="toast hidden"></div>
+    
+    <div id="modal-overlay" class="modal-overlay hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 id="modal-title">Add Custom Dictionary</h3>
+          <button id="modal-close" class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="dict-name">Name</label>
+            <input type="text" id="dict-name" placeholder="My Dictionary">
+          </div>
+          <div class="form-group">
+            <label for="dict-url">URL Pattern</label>
+            <input type="text" id="dict-url" placeholder="https://example.com/define/{word}">
+            <p class="form-hint">Use {word} as placeholder for the search term</p>
+          </div>
+          <div class="form-group">
+            <label for="dict-icon">Icon URL (optional)</label>
+            <input type="text" id="dict-icon" placeholder="https://example.com/favicon.ico">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="modal-cancel" class="btn-secondary">Cancel</button>
+          <button id="modal-save" class="btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>
+

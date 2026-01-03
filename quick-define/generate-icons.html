@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate Quick Define Icons</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; background: #1a1a2e; color: #fff; }
+    canvas { display: block; margin: 10px 0; border: 1px solid #333; }
+    button { margin: 5px; padding: 10px 20px; cursor: pointer; }
+    .icons { display: flex; gap: 20px; flex-wrap: wrap; }
+    .icon-group { text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>Quick Define Icon Generator</h1>
+  <p>Click "Download All" to save the icons, then place them in the icons/ folder.</p>
+  
+  <div class="icons">
+    <div class="icon-group">
+      <canvas id="icon16" width="16" height="16"></canvas>
+      <p>icon16.png</p>
+      <button onclick="download('icon16', 16)">Download</button>
+    </div>
+    <div class="icon-group">
+      <canvas id="icon48" width="48" height="48"></canvas>
+      <p>icon48.png</p>
+      <button onclick="download('icon48', 48)">Download</button>
+    </div>
+    <div class="icon-group">
+      <canvas id="icon128" width="128" height="128"></canvas>
+      <p>icon128.png</p>
+      <button onclick="download('icon128', 128)">Download</button>
+    </div>
+  </div>
+  
+  <button onclick="downloadAll()">Download All Icons</button>
+  
+  <script>
+    function drawIcon(canvas, size) {
+      const ctx = canvas.getContext('2d');
+      const padding = size * 0.1;
+      const bookWidth = size - padding * 2;
+      const bookHeight = size - padding * 2;
+      
+      ctx.fillStyle = '#1a1a2e';
+      ctx.fillRect(0, 0, size, size);
+      
+      ctx.fillStyle = '#4a9eff';
+      ctx.beginPath();
+      ctx.roundRect(padding, padding, bookWidth, bookHeight, size * 0.1);
+      ctx.fill();
+      
+      ctx.fillStyle = '#1a1a2e';
+      const lineY = padding + bookHeight * 0.35;
+      const lineWidth = bookWidth * 0.6;
+      const lineHeight = size * 0.08;
+      ctx.fillRect(padding + (bookWidth - lineWidth) / 2, lineY, lineWidth, lineHeight);
+      
+      const line2Y = lineY + lineHeight + size * 0.1;
+      const line2Width = bookWidth * 0.4;
+      ctx.fillRect(padding + (bookWidth - line2Width) / 2, line2Y, line2Width, lineHeight);
+      
+      ctx.strokeStyle = '#3a8eef';
+      ctx.lineWidth = size * 0.04;
+      ctx.beginPath();
+      ctx.roundRect(padding, padding, bookWidth, bookHeight, size * 0.1);
+      ctx.stroke();
+    }
+    
+    function download(id, size) {
+      const canvas = document.getElementById(id);
+      const link = document.createElement('a');
+      link.download = `icon${size}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+    
+    function downloadAll() {
+      download('icon16', 16);
+      setTimeout(() => download('icon48', 48), 100);
+      setTimeout(() => download('icon128', 128), 200);
+    }
+    
+    drawIcon(document.getElementById('icon16'), 16);
+    drawIcon(document.getElementById('icon48'), 48);
+    drawIcon(document.getElementById('icon128'), 128);
+  </script>
+</body>
+</html>
+

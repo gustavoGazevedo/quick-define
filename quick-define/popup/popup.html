@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Define</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Quick Define</h1>
+    </header>
+    
+    <div class="search-section">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Enter a word..." autocomplete="off">
+        <button id="search-btn" title="Search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="M21 21l-4.35-4.35"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <select id="dictionary-select">
+        <option value="">Default Dictionary</option>
+      </select>
+    </div>
+    
+    <div id="history-section" class="history-section hidden">
+      <h3>Recent Searches</h3>
+      <ul id="history-list"></ul>
+    </div>
+    
+    <footer>
+      <a href="#" id="settings-link">Settings</a>
+    </footer>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
+
